@@ -1,0 +1,22 @@
+{
+  "name": "grocery-shop",
+  "private": true,
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "dev": "concurrently --kill-others --names API,CUSTOMER,ADMIN,DELIVERY \"npm:dev:api\" \"npm:dev:customer\" \"npm:dev:admin\" \"npm:dev:delivery\"",
+    "dev:customer": "npm run dev --workspace @grocery-shop/customer",
+    "dev:admin": "npm run dev --workspace @grocery-shop/admin",
+    "dev:delivery": "npm run dev --workspace @grocery-shop/delivery",
+    "dev:api": "npm run dev --workspace @grocery-shop/api",
+    "build": "npm run build --workspaces --if-present"
+  },
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "devDependencies": {
+    "concurrently": "^10.0.6"
+  }
+}
